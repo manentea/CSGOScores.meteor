@@ -1,0 +1,86 @@
+<head>
+  <title>CSGO Scores</title>
+  <link rel="icon" href="/images/icon.png">
+</head>
+
+<body>
+
+  <div id="sidebar">
+    {{>tabs}}
+  </div>
+
+  <div id="newsList">
+    <h1 style='color:white;'>News</h1>
+    {{>news}}
+  </div>
+
+  <div id="matches" style='display:none;'>
+    <h1 style='color:white;'>Results</h1>
+    {{>scores}}
+  </div>
+
+  <div id="upcoming" style='display:none;'>
+    <h1 style='color:white;'>Upcoming Matches</h1>
+    {{>upcoming}}
+  </div>
+
+</body>
+
+<template name='tabs'>
+  {{#each tabs}}
+    <a id='{{id}}'><img src='{{src}}'/></a>
+  {{/each}}
+</template>
+
+<template name='news'>
+  {{#each news}}
+    <div class="newsItem">
+      <a target='_blank' class="link" href={{href}} onclick="window.open('{{href}}')">
+        <p>
+          {{title}}
+        </p>
+        <p class='link' style='font-size:90%;'>
+          {{date.toLocaleDateString}}
+          <br>
+          <span style='font-size:75%;'>
+            {{date.toLocaleTimeString}}
+          </span>
+        </p>
+      </a>
+    </div>
+  {{/each}}
+</template>
+
+<template name='scores'>
+  {{#each scores}}
+    <div class="newsItem">
+      <a target='_blank' class="link" href='{{href}}' onclick="window.open('{{href}}')">
+        <p style='text-transform:capitalize;'>
+          {{time}}
+        </p>
+        <p>
+          {{winner}} <span class="matchScore" style='color:green'>{{high}}</span> - <span class="matchScore" style='color:red'>{{low}}</span> {{loser}}
+        </p>
+      </a>
+    </div>
+  {{/each}}
+</template>
+
+<template name='upcoming'>
+  {{#each upcoming}}
+    <div class="newsItem">
+      <a target='_blank' class="link" href={{href}} onclick="window.open('{{href}}')">
+        <p>
+          {{title}}
+        </p>
+        <p class='link' style='font-size:90%;'>
+          {{date.toLocaleDateString}}
+          <br>
+          <span style='font-size:75%;'>
+            {{date.toLocaleTimeString}}
+          </span>
+        </p>
+      </a>
+    </div>
+  {{/each}}
+</template>
